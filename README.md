@@ -1,4 +1,7 @@
 # React + Vite
+Important command promts
+npm install @clerk/clerk-react
+npm install @react-google-maps/api socket.io-client
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const OrderHistory = () => {
   const tripHistory = JSON.parse(localStorage.getItem('rideHistory')) || [];
+  console.log(tripHistory); // Add this line to see if data is retrieved
 
   return (
     <div>

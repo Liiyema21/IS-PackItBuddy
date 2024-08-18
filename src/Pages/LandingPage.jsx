@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../Components/NavBar';
 import { UserButton } from '@clerk/clerk-react';
 
 const LandingPage = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [price, setPrice] = useState(null);
+  const [distance, setDistance] = useState(null);
+
   let map, directionsService, directionsRenderer;
   let sourceAutoComplete, destinationAutoComplete;
 
@@ -73,15 +77,27 @@ const LandingPage = () => {
       if (status === 'OK') {
         directionsRenderer.setDirections(result);
         const route = result.routes[0];
-        const distance = route.legs[0].distance.value / 1000; // Convert meters to kilometers
-        localStorage.setItem('distance', distance.toFixed(2)); // Store the distance in local storage
+        const distanceValue = route.legs[0].distance.value / 1000; // Convert meters to kilometers
+        const calculatedPrice = calculatePrice(distanceValue); // Implement this function to calculate price
+
+        localStorage.setItem('distance', distanceValue.toFixed(2)); // Store the distance in local storage
         localStorage.setItem('source', start); // Store the source location
         localStorage.setItem('destination', end); // Store the destination location
-        console.log(`Distance: ${distance} km`); // Optional: log the distance for debugging
+
+        setPrice(calculatedPrice); // Update price state
+        setDistance(distanceValue.toFixed(2)); // Update distance state
+        setModalIsOpen(true); // Show the modal
       } else {
         console.error('Directions request failed due to ' + status);
       }
     });
+  };
+
+  // Dummy price calculation function
+  const calculatePrice = (distance) => {
+    const baseRate = 250; // Base rate in dollars
+    const perKmRate = 5.50; // Rate per kilometer
+    return (baseRate + (perKmRate * distance)).toFixed(2);
   };
 
   return (
@@ -122,7 +138,7 @@ const LandingPage = () => {
 
               <div>
                 <button
-                  className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-[#131a4b]"
+                  className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-[#131a4b] text-white"
                   onClick={calcRoute}
                 >
                   Get Direction
@@ -131,7 +147,7 @@ const LandingPage = () => {
 
               <div>
                 <Link to="/getquote">
-                  <button className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-amber-400">
+                  <button className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-amber-400 text-white">
                     Get Quote
                   </button>
                 </Link>
@@ -140,6 +156,23 @@ const LandingPage = () => {
           </div>
         </main>
       </div>
+
+      {/* Modal for displaying price and distance */}
+      {modalIsOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-80">
+            <h2 className="text-xl font-semibold mb-4">Price and Distance</h2>
+            <p className="text-lg mb-4">Price: R{price}</p>
+            <p className="text-lg mb-4">Distance: {distance} km</p>
+            <button
+              className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+              onClick={() => setModalIsOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

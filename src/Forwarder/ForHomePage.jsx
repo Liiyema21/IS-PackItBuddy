@@ -5,18 +5,23 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 
 const ForHomePage = () => {
   const [rideDetails, setRideDetails] = useState(null);
+  const [rideAccepted, setRideAccepted] = useState(false);
 
   useEffect(() => {
     // Fetch the most recent ride details from localStorage
     const tripHistory = JSON.parse(localStorage.getItem('rideHistory')) || [];
     if (tripHistory.length > 0) {
       const latestTrip = tripHistory[tripHistory.length - 1]; // Get the most recent trip
+      const totalPrice = localStorage.getItem('totalPrice'); // Retrieve the total price
+      if (totalPrice) {
+        latestTrip.price = totalPrice; // Ensure the price matches the one from GetQuote
+      }
       setRideDetails(latestTrip);
     }
 
     const initMap = () => {
-      const johannesburg = { lat: -26.2033, lng: 28.0473 }; // 138 Van Beek Street
-      const pretoria = { lat: -25.7461, lng: 28.1881 }; // Pretoria
+      const johannesburg = { lat: -26.2033, lng: 28.0473 };
+      const pretoria = { lat: -25.7461, lng: 28.1881 };
 
       const map = new window.google.maps.Map(document.getElementById('map'), {
         zoom: 10,
@@ -57,7 +62,7 @@ const ForHomePage = () => {
   const handleLogout = () => {
     localStorage.removeItem('user');
     sessionStorage.removeItem('userSession');
-    navigate('/'); // Redirects to the root (home) page
+    navigate('/');
   };
 
   const handleAcceptRide = () => {
@@ -68,6 +73,9 @@ const ForHomePage = () => {
 
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(rideDetails.source)}&destination=${encodeURIComponent(rideDetails.destination)}`;
     window.location.href = directionsUrl;
+
+    setRideAccepted(true);
+    localStorage.removeItem('rideHistory');
   };
 
   return (
@@ -88,11 +96,13 @@ const ForHomePage = () => {
           <h3 className="text-2xl font-bold flex items-center mb-4">
             <span className="mr-2">🚚</span> Truck
           </h3>
-          {rideDetails ? (
+          {rideAccepted ? (
+            <p className="text-lg font-semibold">No Ride Requested</p>
+          ) : rideDetails ? (
             <>
               <div className="text-2xl font-bold mb-2">R{rideDetails.price}</div>
               <div className="text-gray-600 mb-2">★ 4.75</div>
-              <div className="text-gray-600 mb-2">Moving Date: 12/08</div>
+              <div className="text-gray-600 mb-2">Moving Date: {rideDetails.movingDate || 'N/A'}</div>
               <div className="text-gray-700 mb-2">
                 <span>5 mins (1.0 mi) away</span>
                 <br />
@@ -106,16 +116,16 @@ const ForHomePage = () => {
               <div className="text-gray-700 mb-2">
                 <span>Long trip (45+ min)</span>
               </div>
+              <button
+                onClick={handleAcceptRide}
+                className=" px-4 block text-center bg-yellow-400 text-black py-3 rounded-lg text-lg"
+              >
+                Accept
+              </button>
             </>
           ) : (
             <p>Loading ride details...</p>
           )}
-          <button
-            onClick={handleAcceptRide}
-            className="block text-center bg-yellow-400 text-black py-3 rounded-lg text-lg"
-          >
-            Accept
-          </button>
         </div>
       </main>
     </div>

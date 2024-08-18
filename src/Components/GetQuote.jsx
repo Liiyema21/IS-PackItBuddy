@@ -46,16 +46,16 @@ const GetQuote = () => {
     if (isFormComplete()) {
       // Create a ride request object
       const rideRequest = {
-        source: "Your source location", // Set source location
-        destination: "Your destination location", // Set destination location
+        source: localStorage.getItem('source'), // Retrieve source location
+        destination: localStorage.getItem('destination'), // Retrieve destination location
         price: totalPrice,
-        distance: "Distance info" // Set distance info
+        distance: localStorage.getItem('distance') // Retrieve distance info
       };
-  
+
       // Save the ride request and other relevant data to local storage
       localStorage.setItem('rideRequest', JSON.stringify(rideRequest));
       localStorage.setItem('totalPrice', totalPrice);
-  
+
       // Navigate to PaymentSide page
       navigate('/PaymentSide');
     } else {

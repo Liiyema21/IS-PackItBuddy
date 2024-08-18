@@ -61,29 +61,30 @@ const LandingPage = () => {
   const calcRoute = () => {
     const start = document.getElementById('source').value;
     const end = document.getElementById('destination').value;
-
+  
     if (!directionsService || !directionsRenderer) {
       console.error('Directions service or renderer not initialized.');
       return;
     }
-
+  
     const request = {
       origin: start,
       destination: end,
       travelMode: 'DRIVING'
     };
-
+  
     directionsService.route(request, (result, status) => {
       if (status === 'OK') {
         directionsRenderer.setDirections(result);
         const route = result.routes[0];
         const distanceValue = route.legs[0].distance.value / 1000; // Convert meters to kilometers
         const calculatedPrice = calculatePrice(distanceValue); // Implement this function to calculate price
-
+  
         localStorage.setItem('distance', distanceValue.toFixed(2)); // Store the distance in local storage
         localStorage.setItem('source', start); // Store the source location
         localStorage.setItem('destination', end); // Store the destination location
-
+        localStorage.setItem('distancePrice', calculatedPrice); // Store the calculated price in local storage
+  
         setPrice(calculatedPrice); // Update price state
         setDistance(distanceValue.toFixed(2)); // Update distance state
         setModalIsOpen(true); // Show the modal
@@ -92,6 +93,7 @@ const LandingPage = () => {
       }
     });
   };
+  
 
   // Dummy price calculation function
   const calculatePrice = (distance) => {

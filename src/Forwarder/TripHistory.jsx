@@ -23,7 +23,6 @@ const TripHistory = () => {
               <div><strong>Destination:</strong> {trip.destination}</div>
               <div><strong>Distance:</strong> {trip.distance} km</div>
               <div><strong>Price:</strong> R{trip.price}</div>
-              {/* Add live location data if available */}
             </li>
           ))}
         </ul>

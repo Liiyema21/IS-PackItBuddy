@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../Components/NavBar';
+import { UserButton } from '@clerk/clerk-react';
 
 const LandingPage = () => {
   let map, directionsService, directionsRenderer;
@@ -86,7 +87,10 @@ const LandingPage = () => {
   return (
     <div>
       <NavBar />
-      <div className='px-4 py-20'>
+      <div className='absolute right-0'>
+        <UserButton />
+      </div>
+      <div className='px-4 py-10'>
         <main>
           <div name='map'>
             <div

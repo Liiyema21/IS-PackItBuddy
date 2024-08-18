@@ -1,10 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ForwarderNav from './ForwarderComp/ForwarderNav';
 import { useNavigate } from 'react-router-dom';
 import { RiLogoutCircleRLine } from "react-icons/ri";
 
 const ForHomePage = () => {
+  const [rideDetails, setRideDetails] = useState(null);
+
   useEffect(() => {
+    // Fetch the most recent ride details from localStorage
+    const tripHistory = JSON.parse(localStorage.getItem('rideHistory')) || [];
+    if (tripHistory.length > 0) {
+      const latestTrip = tripHistory[tripHistory.length - 1]; // Get the most recent trip
+      setRideDetails(latestTrip);
+    }
+
     const initMap = () => {
       const johannesburg = { lat: -26.2033, lng: 28.0473 }; // 138 Van Beek Street
       const pretoria = { lat: -25.7461, lng: 28.1881 }; // Pretoria
@@ -52,13 +61,12 @@ const ForHomePage = () => {
   };
 
   const handleAcceptRide = () => {
-    const origin = "138 Van Beek St, Johannesburg";
-    const destination = "Pretoria";
+    if (!rideDetails) {
+      console.error('No ride details available');
+      return;
+    }
 
-    // Construct the Google Maps Directions URL
-    const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
-
-    // Redirect to the Google Maps Directions URL
+    const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(rideDetails.source)}&destination=${encodeURIComponent(rideDetails.destination)}`;
     window.location.href = directionsUrl;
   };
 
@@ -80,22 +88,28 @@ const ForHomePage = () => {
           <h3 className="text-2xl font-bold flex items-center mb-4">
             <span className="mr-2">🚚</span> Truck
           </h3>
-          <div className="text-2xl font-bold mb-2">R400.91</div>
-          <div className="text-gray-600 mb-2">★ 4.75</div>
-          <div className="text-gray-600 mb-2">Moving Date: 12/08</div>
-          <div className="text-gray-700 mb-2">
-            <span>5 mins (1.0 mi) away</span>
-            <br />
-            <span>138 Van Beek St, Johannesburg</span>
-          </div>
-          <div className="text-gray-700 mb-2">
-            <span>2 hr 44 min (97.3 mi) trip</span>
-            <br />
-            <span>Pretoria</span>
-          </div>
-          <div className="text-gray-700 mb-2">
-            <span>Long trip (45+ min)</span>
-          </div>
+          {rideDetails ? (
+            <>
+              <div className="text-2xl font-bold mb-2">R{rideDetails.price}</div>
+              <div className="text-gray-600 mb-2">★ 4.75</div>
+              <div className="text-gray-600 mb-2">Moving Date: 12/08</div>
+              <div className="text-gray-700 mb-2">
+                <span>5 mins (1.0 mi) away</span>
+                <br />
+                <span>{rideDetails.source}</span>
+              </div>
+              <div className="text-gray-700 mb-2">
+                <span>2 hr 44 min (97.3 mi) trip</span>
+                <br />
+                <span>{rideDetails.destination}</span>
+              </div>
+              <div className="text-gray-700 mb-2">
+                <span>Long trip (45+ min)</span>
+              </div>
+            </>
+          ) : (
+            <p>Loading ride details...</p>
+          )}
           <button
             onClick={handleAcceptRide}
             className="block text-center bg-yellow-400 text-black py-3 rounded-lg text-lg"

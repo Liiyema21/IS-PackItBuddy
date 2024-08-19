@@ -108,7 +108,7 @@ const LandingPage = () => {
 
   // Dummy price calculation function
   const calculatePrice = (distance) => {
-    const baseRate = 250; // Base rate in dollars
+    const baseRate = 0; // Base rate in dollars
     const perKmRate = 5.50; // Rate per kilometer
     return (baseRate + (perKmRate * distance)).toFixed(2);
   };

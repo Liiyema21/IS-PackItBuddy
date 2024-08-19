@@ -20,9 +20,12 @@ const ForHomePage = () => {
     }
 
     const initMap = () => {
+      const johannesburg = { lat: -26.2033, lng: 28.0473 };
+      const pretoria = { lat: -25.7461, lng: 28.1881 };
+
       const map = new window.google.maps.Map(document.getElementById('map'), {
         zoom: 10,
-        center: { lat: -26.2033, lng: 28.0473 }, // Default center
+        center: johannesburg,
       });
 
       const directionsService = new window.google.maps.DirectionsService();
@@ -30,8 +33,8 @@ const ForHomePage = () => {
       directionsRenderer.setMap(map);
 
       const request = {
-        origin: rideDetails ? rideDetails.source : { lat: -26.2033, lng: 28.0473 },
-        destination: rideDetails ? rideDetails.destination : { lat: -25.7461, lng: 28.1881 },
+        origin: johannesburg,
+        destination: pretoria,
         travelMode: 'DRIVING',
       };
 
@@ -52,7 +55,7 @@ const ForHomePage = () => {
       document.body.appendChild(script);
       script.onload = initMap;
     }
-  }, [rideDetails]);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -67,22 +70,18 @@ const ForHomePage = () => {
       console.error('No ride details available');
       return;
     }
-
-    // Add ride details to acceptedRides
-    const acceptedRides = JSON.parse(localStorage.getItem('acceptedRides')) || [];
-    acceptedRides.push(rideDetails);
-    localStorage.setItem('acceptedRides', JSON.stringify(acceptedRides));
-
-    // Remove ride details from rideHistory
-    const rideHistory = JSON.parse(localStorage.getItem('rideHistory')) || [];
-    const updatedRideHistory = rideHistory.filter(ride => ride !== rideDetails);
-    localStorage.setItem('rideHistory', JSON.stringify(updatedRideHistory));
-
-    // Redirect to Google Maps directions
+// Redirect to Google Maps directions
     const directionsUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(rideDetails.source)}&destination=${encodeURIComponent(rideDetails.destination)}`;
     window.location.href = directionsUrl;
 
     setRideAccepted(true);
+
+    // Save accepted ride to localStorage
+    const acceptedRides = JSON.parse(localStorage.getItem('acceptedRides')) || [];
+    acceptedRides.push(rideDetails);
+    localStorage.setItem('acceptedRides', JSON.stringify(acceptedRides));
+
+    localStorage.removeItem('rideHistory');
   };
 
   return (

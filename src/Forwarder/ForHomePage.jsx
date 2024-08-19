@@ -103,7 +103,7 @@ const ForHomePage = () => {
             <span className="mr-2">🚚</span> Truck
           </h3>
           {rideAccepted ? (
-            <p className="text-lg font-semibold">No Ride Requested</p>
+            <p className="text-lg font-semibold">No Rides Requested</p>
           ) : rideDetails ? (
             <>
               <div className="text-2xl font-bold mb-2">R{rideDetails.price}</div>

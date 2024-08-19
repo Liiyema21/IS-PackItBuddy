@@ -9,7 +9,7 @@ const TripHistory = () => {
   return (
     <div>
       <ForwarderNav />
-      <div>
+      <div className='px-4 py-2'>
         <Link to='/ForHomePage'>
           <CiHome size={30} className='absolute right-0'/>
         </Link>

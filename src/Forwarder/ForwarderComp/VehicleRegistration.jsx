@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ForwarderNav from './ForwarderNav';
+import { MdDomainVerification } from "react-icons/md";
 
 const VehicleRegistration = () => {
   // State to handle form submission
@@ -32,9 +33,9 @@ const VehicleRegistration = () => {
     <main className="flex flex-col items-center min-h-screen py-6 bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm text-center">
         {/* Icon Placeholder */}
-        <div className="mb-4">Icon here</div>
+        <div className="ml-36 "><MdDomainVerification size={40} className='text-[#131a4b]'/></div>
 
-        <h2 className="mb-4 text-lg font-bold">Vehicle Registration & Verification</h2>
+        <h2 className="mb-4 text-lg font-bold text-[#131a4b]">Vehicle Registration & Verification</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <select

@@ -69,8 +69,8 @@ const GetQuote = () => {
   };
 
   return (
-    <main className="flex justify-center">
-      <div className="bg-white p-5 rounded-lg shadow-md w-[90%] mt-20">
+    <main className="flex justify-center bg-slate-100 h-screen">
+      <div className="bg-white p-5 rounded-lg shadow-md w-[90%] mt-20 h-min">
         <h2 className="text-xl mb-4">Get Quote</h2>
 
         <h3 className="text-lg mb-4">Total price: R<span id="total-price">{totalPrice}</span></h3>

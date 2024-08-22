@@ -70,15 +70,12 @@ const GetQuote = () => {
   };
 
   return (
-<<<<<<< HEAD
     <div>
-<NavBar />
-    <main className="flex justify-center">
-      <div className="bg-white p-5 rounded-lg shadow-md w-[90%] mt-20">
-=======
+      <div>
+        <NavBar />
+      </div>
     <main className="flex justify-center bg-slate-100 h-screen">
       <div className="bg-white p-5 rounded-lg shadow-md w-[90%] mt-20 h-min">
->>>>>>> f673bc60b7b1ede76fa5ccf7e2ca4c39c581b64a
         <h2 className="text-xl mb-4">Get Quote</h2>
 
         <h3 className="text-lg mb-4">Total price: R<span id="total-price">{totalPrice}</span></h3>

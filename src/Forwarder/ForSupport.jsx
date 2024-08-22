@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavBar from '../Components/NavBar';
 import { CiHome } from "react-icons/ci";
 import { Link } from 'react-router-dom';
+import ForwarderNav from './ForwarderComp/ForwarderNav';
 
 
 const ForSupport = () => {
@@ -30,7 +31,7 @@ const ForSupport = () => {
 
   return (
     <div className='bg-gray-50'>
-        <NavBar />
+        <ForwarderNav />
         <div>
       <Link to='/LandingPage'>
         <CiHome size={30} className='absolute right-0'/>

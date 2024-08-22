@@ -22,8 +22,6 @@ const Test = () => {
 
   return (
     <div>
-      {/* Navbar */}
-
       <nav className="navbar">
       <img src={PackitByddyLogo} alt="Our Logo" />
       <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from './NavBar';
 
 const GetQuote = () => {
   const [formData, setFormData] = useState({
@@ -69,6 +70,8 @@ const GetQuote = () => {
   };
 
   return (
+    <div>
+<NavBar />
     <main className="flex justify-center">
       <div className="bg-white p-5 rounded-lg shadow-md w-[90%] mt-20">
         <h2 className="text-xl mb-4">Get Quote</h2>
@@ -146,6 +149,8 @@ const GetQuote = () => {
         </form>
       </div>
     </main>
+    </div>
+
   );
 };
 

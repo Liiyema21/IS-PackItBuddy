@@ -3,6 +3,7 @@ import { BsCashCoin } from "react-icons/bs";
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import io from 'socket.io-client';
 
+
 const PaymentSide = () => {
   const [distance, setDistance] = useState(null);
   const [driverLocation, setDriverLocation] = useState(null);

@@ -11,11 +11,13 @@ const ForwarderNav = () => {
   return (
     <nav className="flex justify-between items-center w-full h-20 px-4 text-white bg-[#131a4b]">
       <div>
+        <Link to="/LandingPage">
         <img
           src={PackitByddyLogo}
           alt="Our Logo"
           className="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] text-3xl mb-12"
         />
+                </Link>
       </div>
 
       <ul className="hidden md:flex">

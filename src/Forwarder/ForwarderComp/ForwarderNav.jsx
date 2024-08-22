@@ -11,11 +11,14 @@ const ForwarderNav = () => {
   return (
     <nav className="flex justify-between items-center w-full h-20 px-4 text-white bg-[#131a4b]">
       <div>
+        <Link to="/ForHomePage">
         <img
           src={PackitByddyLogo}
           alt="Our Logo"
           className="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] text-3xl mb-12"
         />
+       </Link>
+
       </div>
 
       <ul className="hidden md:flex">
@@ -63,7 +66,7 @@ const ForwarderNav = () => {
 
       {nav && (
         <div
-          className="fixed top-0 right-0 w-1/3 h-full bg-[#131a4b] text-gray-500 z-50 flex flex-col"
+          className="fixed top-0 right-0 w-1/2 h-full bg-[#131a4b] text-gray-500 z-50 flex flex-col"
           style={{ transition: 'transform 0.3s ease-in-out' }}
         >
           <div

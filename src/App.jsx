@@ -1,5 +1,4 @@
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider,} from "react-router-dom";
-import Home from "./Components/Home";
 import LandingPage from "./Pages/LandingPage";
 import { RedirectToSignIn, SignedIn, SignedOut, SignOutButton } from "@clerk/clerk-react";
 import OrderHistory from "./Pages/OrderHistory";
@@ -17,11 +16,12 @@ import VehicleRegistration from "./Forwarder/ForwarderComp/VehicleRegistration";
 import ForForm from "./Forwarder/ForForm";
 import PaymentSide from "./Components/PaymentSide";
 import DirectionsPage from "./Forwarder/DirectionsPage";
+import LandingTest from "./Pages/HomePage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-    <Route index element={<Home />} />
+    <Route index element={<LandingTest/>} />
     <Route path="/LandingPage" element={<>
     <SignedIn>
       <LandingPage />
@@ -46,6 +46,7 @@ const router = createBrowserRouter(
     <Route path='/PaymentSide' element={<PaymentSide />} />
     <Route path='/DirectionsPage' element={<DirectionsPage />} />
     <Route path="/referral/:referralCode" element={<ReferralsPage />} />  
+    <Route path="/Test" element={<LandingTest />} />
       </>
   )
 )

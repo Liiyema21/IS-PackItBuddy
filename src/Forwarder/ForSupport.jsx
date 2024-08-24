@@ -36,13 +36,10 @@ const ForSupport = () => {
       <Link to='/LandingPage'>
         <CiHome size={30} className='absolute right-0'/>
       </Link>
-
       </div>
-
     <main className="flex justify-center">
       <div className="bg-white p-5 rounded-lg shadow-md w-[90%] max-w-[800px]">
         <h1 className="text-2xl mb-5 text-center font-bold text-[#131a4b]">PackItBuddy Support</h1>
-        
         <div className="mb-8">
           <div className="text-xl mb-4 font-medium">Frequently Asked Questions</div>
           <div className="bg-gray-100 p-4 rounded-md mb-2">
@@ -54,7 +51,6 @@ const ForSupport = () => {
             <p className="text-base text-gray-600 mt-2">If you encounter any ride issues, please report it through the "Ride Issues" section in the app or contact support using the form below.</p>
           </div>
         </div>
-        
         <div className="mb-8">
           <div className="text-xl mb-4 font-medium">Common Support Topics</div>
           <div className="bg-gray-100 p-4 rounded-md mb-2">

@@ -3,8 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
 import { isAuthenticated } from './ForwarderComp/authUtils';
 import './ForForm.css';
-import Truck4 from '../assets/Truck4.jpg'
-
+import Truck4 from '../assets/Truck4.jpg';
 
 const ForForm = () => {
   const [formData, setFormData] = useState({
@@ -36,29 +35,29 @@ const ForForm = () => {
     const errors = {};
 
     if (!formData.name.trim()) {
-      errors.name = "Name is required.";
+      errors.name = 'Name is required.';
     }
 
     if (!formData.email.trim()) {
-      errors.email = "Email is required.";
+      errors.email = 'Email is required.';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Email address is invalid.";
+      errors.email = 'Email address is invalid.';
     }
 
     if (!formData.phone.trim()) {
-      errors.phone = "Phone number is required.";
+      errors.phone = 'Phone number is required.';
     } else if (!/^\d{10}$/.test(formData.phone)) {
-      errors.phone = "Phone number is invalid.";
+      errors.phone = 'Phone number is invalid.';
     }
 
     if (!formData.address.trim()) {
-      errors.address = "Address is required.";
+      errors.address = 'Address is required.';
     }
 
     if (!formData.password.trim()) {
-      errors.password = "Password is required.";
+      errors.password = 'Password is required.';
     } else if (formData.password.length < 6) {
-      errors.password = "Password must be at least 6 characters long.";
+      errors.password = 'Password must be at least 6 characters long.';
     }
 
     return errors;
@@ -74,45 +73,85 @@ const ForForm = () => {
       // If no errors, proceed with form submission
       console.log('Form data:', formData);
 
-      // Navigate to the ForHomePage component after successful submission
+      // Navigate to the LandingPage component after successful submission
       navigate('/ForHomePage');
     }
   };
 
   return (
     <div className="container">
-            <div className="form-section">
-                <h2>Create Account</h2>
-                <button>Sign up with Google</button>
-                <p style={{ textAlign: 'center', margin: '15px 0' }}>OR</p>
-                <form>
-                    <label htmlFor="first-name">First name*</label>
-                    <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required />
+      <div className="form-section">
+        <h2>Create Account</h2>
+        <button>Sign up with Google</button>
+        <p style={{ textAlign: 'center', margin: '15px 0' }}>OR</p>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">First name*</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your first name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
 
-                    <label htmlFor="email">Email*</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required />
+          <label htmlFor="email">Email*</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-                    <label htmlFor="phone">Phone*</label>
-                    <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required />
+          <label htmlFor="phone">Phone*</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder="Enter your phone number"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
 
-                    <label htmlFor="address">Physical Address*</label>
-                    <input type="text" id="address" name="address" placeholder="Enter your physical address" required />
+          <label htmlFor="address">Physical Address*</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="Enter your physical address"
+            value={formData.address}
+            onChange={handleChange}
+            required
+          />
 
-                    <label htmlFor="password">Password*</label>
-                    <input type="password" id="password" name="password" placeholder="Create a password" required />
+          <label htmlFor="password">Password*</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create a password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
 
-                    <button type="submit">Create account</button>
-                </form>
-                <div className="login-link">
-                    Already have an account? <a href="#">Log in</a>
-                </div>
-            </div>
-            <div className="image-section">
-                <div className="overlay-content">
-                    <h1>PackItBuddy</h1>
-                </div>
-            </div>
+          <button type="submit">Create account</button>
+        </form>
+        <div className="login-link">
+          Already have an account? <Link to="/login">Log in</Link>
         </div>
+      </div>
+      <div className="image-section">
+        <div className="overlay-content">
+          <h1>PackItBuddy</h1>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -59,7 +59,7 @@ const ForwarderNav = () => {
 
       {nav && (
         <div
-          className="fixed top-0 right-0 w-1/3 h-full bg-[#131a4b] text-gray-500 z-50 flex flex-col"
+          className="fixed top-0 right-0 w-1/2 h-full bg-[#131a4b] text-gray-500 z-50 flex flex-col"
           style={{ transition: 'transform 0.3s ease-in-out' }}
         >
           <div

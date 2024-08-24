@@ -17,6 +17,7 @@ import ForForm from "./Forwarder/ForForm";
 import PaymentSide from "./Components/PaymentSide";
 import DirectionsPage from "./Forwarder/DirectionsPage";
 import LandingTest from "./Pages/HomePage";
+import LogInFormClient from "./Pages/ClientForms/LogInFormClient";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -47,6 +48,7 @@ const router = createBrowserRouter(
     <Route path='/DirectionsPage' element={<DirectionsPage />} />
     <Route path="/referral/:referralCode" element={<ReferralsPage />} />  
     <Route path="/Test" element={<LandingTest />} />
+    <Route path="/LogInFormClient" element={<LogInFormClient />} />
       </>
   )
 )

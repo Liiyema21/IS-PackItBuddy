@@ -25,13 +25,13 @@ const Test = () => {
       <nav className="navbar">
       <img src={PackitByddyLogo} alt="Our Logo" />
       <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
-        <li className='nav-item'>
+        <li className='text-gray-800'>
           <Link to='/ForForm'>
          
           <a href="#" className='nav-link driver'>Become a driver</a>
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="text-gray-800">
           <a href="#" className="nav-link">Services</a>
           <ul>
             <li className="nav-item"><a href="#" className="nav-link">Local Moving</a></li>
@@ -39,26 +39,25 @@ const Test = () => {
             <li className="nav-item"><a href="#" className="nav-link">Packing Services</a></li>
           </ul>
         </li>
-        <li className="nav-item">
+        <li className="text-gray-800">
           <a href="#" className="nav-link">About</a>
           <ul>
             <li className="nav-item"><a href="#" className="nav-link">Our Story</a></li>
             <li className="nav-item"><a href="#" className="nav-link">Team</a></li>
           </ul>
         </li>
-        <li className="nav-item">
+        <li className="text-gray-800">
           <a href="#" className="nav-link">Contact</a>
           <ul>
             <li className="nav-item"><a href="#" className="nav-link">Locations</a></li>
             <li className="nav-item"><a href="#" className="nav-link">Support</a></li>
           </ul>
         </li>
-        <li className="nav-item">
-          <SignInButton forceRedirectUrl='/LandingPage'>
-          <a href="#" className="nav-link sign-in">Sign In</a>
-          </SignInButton>
-         
-        </li>
+        <lable className="nav-item text-white">
+          <Link className='bg-[#131a4b] px-4 rounded-md py-2'
+           to='/LogInFormClient'> Sign In
+          </Link>
+        </lable>
       </ul>
       <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
         <span className="bar"></span>

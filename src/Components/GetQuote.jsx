@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
+import { Link } from 'react-router-dom';
+import { CiHome } from "react-icons/ci";
 
 const GetQuote = () => {
   const [formData, setFormData] = useState({
@@ -45,24 +47,26 @@ const GetQuote = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormComplete()) {
-      // Create a ride request object
-      const rideRequest = {
-        source: localStorage.getItem('source'), // Retrieve source location
-        destination: localStorage.getItem('destination'), // Retrieve destination location
-        price: totalPrice,
-        distance: localStorage.getItem('distance') // Retrieve distance info
-      };
+        // Create a ride request object
+        const rideRequest = {
+            source: localStorage.getItem('source'), // Retrieve source location
+            destination: localStorage.getItem('destination'), // Retrieve destination location
+            price: totalPrice,
+            distance: localStorage.getItem('distance'), // Retrieve distance info
+            movingDate: formData.movingDate // Save the moving date from the formData
+        };
 
-      // Save the ride request and other relevant data to local storage
-      localStorage.setItem('rideRequest', JSON.stringify(rideRequest));
-      localStorage.setItem('totalPrice', totalPrice);
+        // Save the ride request and other relevant data to local storage
+        localStorage.setItem('rideRequest', JSON.stringify(rideRequest));
+        localStorage.setItem('totalPrice', totalPrice);
+        localStorage.setItem('movingDate', formData.movingDate); // Save the moving date to localStorage
 
-      // Navigate to PaymentSide page
-      navigate('/PaymentSide');
+        // Navigate to PaymentSide page
+        navigate('/PaymentSide');
     } else {
-      alert("Please fill in all the required fields.");
+        alert("Please fill in all the required fields.");
     }
-  };
+};
   
   const isFormComplete = () => {
     const { fullName, email, phone, movingDate } = formData;
@@ -70,9 +74,15 @@ const GetQuote = () => {
   };
 
   return (
-    <div>
+    <div className='w-screen'>
       <div>
         <NavBar />
+        <div>
+        <Link to='/LandingPage'>
+          <CiHome size={30} className='absolute right-0'/>
+        </Link>
+      </div>
+
       </div>
     <main className="flex justify-center bg-slate-100 h-screen">
       <div className="bg-white p-5 rounded-lg shadow-md w-[90%] mt-20 h-min">

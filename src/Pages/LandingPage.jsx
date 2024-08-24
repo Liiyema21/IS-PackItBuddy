@@ -119,7 +119,7 @@ const LandingPage = () => {
       <div className='absolute right-0'>
         <UserButton />
       </div>
-      <div className='px-4 py-10'>
+      <div className='px-4 py-10 w-screen'>
         <main>
           <div name='map'>
             <div

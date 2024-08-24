@@ -2,6 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import { BsCashCoin } from "react-icons/bs";
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import io from 'socket.io-client';
+import GetQuote from './GetQuote';
+import { Link } from 'react-router-dom';
+import { IoArrowBack } from 'react-icons/io5';
 
 
 const PaymentSide = () => {
@@ -36,6 +39,10 @@ const PaymentSide = () => {
 
   return (
     <div className='bg-gray-200 h-screen p-4'>
+      <Link to='/GetQuote'>
+        <IoArrowBack />
+      </Link>
+      
       <h1 className='text-xl font-bold mb-4'>Payment and Tracking</h1>
       <div className='bg-white rounded-lg shadow-md p-4'>
         <h2 className='text-lg font-semibold mb-2'>Payment Details</h2>

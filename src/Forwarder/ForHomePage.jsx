@@ -13,12 +13,16 @@ const ForHomePage = () => {
     if (tripHistory.length > 0) {
       const latestTrip = tripHistory[tripHistory.length - 1]; // Get the most recent trip
       const totalPrice = localStorage.getItem('totalPrice'); // Retrieve the total price
+      const movingDate = localStorage.getItem('movingDate'); // Retrieve the moving date
+
       if (totalPrice) {
-        latestTrip.price = totalPrice; // Ensure the price matches the one from GetQuote
+          latestTrip.price = totalPrice; // Ensure the price matches the one from GetQuote
+      }
+      if (movingDate) {
+          latestTrip.movingDate = movingDate; // Set the moving date from localStorage
       }
       setRideDetails(latestTrip);
-    }
-
+  }
     const initMap = () => {
       const johannesburg = { lat: -26.2033, lng: 28.0473 };
       const pretoria = { lat: -25.7461, lng: 28.1881 };
@@ -96,7 +100,7 @@ const ForHomePage = () => {
         </button>
       </div>
 
-      <main className="flex flex-col items-center min-h-screen p-5">
+      <main className="flex flex-col items-center min-h-screen p-5 w-screen">
         <div id="map" className="h-64 w-full rounded-lg overflow-hidden shadow-sm mb-2"></div>
         <div className="bg-gray-50 rounded-lg shadow-lg p-6 w-full max-w-lg z-10">
           <h3 className="text-2xl font-bold flex items-center mb-4">

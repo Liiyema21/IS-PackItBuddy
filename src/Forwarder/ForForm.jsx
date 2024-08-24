@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoArrowBack } from 'react-icons/io5';
 import { isAuthenticated } from './ForwarderComp/authUtils';
+import './ForForm.css';
+import Truck4 from '../assets/Truck4.jpg'
+
 
 const ForForm = () => {
   const [formData, setFormData] = useState({
@@ -77,101 +80,39 @@ const ForForm = () => {
   };
 
   return (
-    <div>
-      <main className="flex flex-col items-center min-h-screen py-20 bg-gray-100">
-        <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
-          <div>
-            <button>
-              <Link to="/" className="">
-                <IoArrowBack />
-              </Link>
-            </button>
-          </div>
+    <div className="container">
+            <div className="form-section">
+                <h2>Create Account</h2>
+                <button>Sign up with Google</button>
+                <p style={{ textAlign: 'center', margin: '15px 0' }}>OR</p>
+                <form>
+                    <label htmlFor="first-name">First name*</label>
+                    <input type="text" id="first-name" name="first-name" placeholder="Enter your first name" required />
 
-          <form onSubmit={handleSubmit}>
-            <h1 className="uppercase py-4 px-4 text-2xl text-center font-bold text-[#131a4b]">Create an account</h1>
+                    <label htmlFor="email">Email*</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required />
 
-            <div className="relative">
-              <label htmlFor="name" className="leading-7 text-sm text-gray-600">Your Full Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Full Name"
-                value={formData.name}
-                onChange={handleChange}
-                className={`w-full bg-white rounded border ${errors.name ? 'border-red-500' : 'border-gray-300'} focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
-                required
-              />
-              {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
-            </div>
+                    <label htmlFor="phone">Phone*</label>
+                    <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required />
 
-            <div className="relative mt-4">
-              <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                className={`w-full bg-white rounded border ${errors.email ? 'border-red-500' : 'border-gray-300'} focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
-                required
-              />
-              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
-            </div>
+                    <label htmlFor="address">Physical Address*</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your physical address" required />
 
-            <div className="relative mt-4">
-              <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone Number</label>
-              <input
-                type="text"
-                id="phone"
-                name="phone"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={handleChange}
-                className={`w-full bg-white rounded border ${errors.phone ? 'border-red-500' : 'border-gray-300'} focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
-                required
-              />
-              {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
-            </div>
+                    <label htmlFor="password">Password*</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required />
 
-            <div className="relative mt-4">
-              <label htmlFor="address" className="leading-7 text-sm text-gray-600">Physical Address</label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                placeholder="Address"
-                value={formData.address}
-                onChange={handleChange}
-                className={`w-full bg-white rounded border ${errors.address ? 'border-red-500' : 'border-gray-300'} focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
-                required
-              />
-              {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address}</p>}
+                    <button type="submit">Create account</button>
+                </form>
+                <div className="login-link">
+                    Already have an account? <a href="#">Log in</a>
+                </div>
             </div>
-
-            <div className="relative mt-4">
-              <label htmlFor="password" className="leading-7 text-sm text-gray-600">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
-                className={`w-full bg-white rounded border ${errors.password ? 'border-red-500' : 'border-gray-300'} focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out`}
-                required
-              />
-              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+            <div className="image-section">
+                <div className="overlay-content">
+                    <h1>PackItBuddy</h1>
+                </div>
             </div>
-            <div className="text-center mt-6 border border-gray-200 text-2xl rounded-lg px-4 bg-[#131a4b] text-gray-200">
-              <button type="submit">Submit</button>
-            </div>
-          </form>
         </div>
-      </main>
-    </div>
   );
 };
 
